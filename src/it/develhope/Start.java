@@ -3,16 +3,36 @@ package it.develhope;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Test of application
+ *
+ * @author Tania Ielpo
+ */
+
 public class Start {
 
     public static void main(String[] args) {
+
+        //creation of the cinema list
         CinemaList cinemaList = new CinemaList();
+        //creation of a cinema
         Cinema cinema1=new Cinema("Iris");
+        //creation of a manager
         Menager menager = new Menager("Tania", "Ielpo", "taniaie@tiscali.it");
+        //attribution of a menager to the cinema
         cinema1.setMenager(menager);
+        //attribution of a cinema to the menager
         menager.setCinema(cinema1);
+        //initialization of the cinema list by adding the created cinema
         cinemaList.add(cinema1);
         Scanner in = new Scanner(System.in);
+
+        //management choice menu
+
+        /**
+         * the menu allows you to add a new cinema,
+         * manage an existing one or exit the application
+         */
 
         int choice = 0;
         do {
@@ -24,6 +44,8 @@ public class Start {
                 choice = in.nextInt();
                 switch (choice) {
                     case 1:
+
+                        //by creating a new cinema we create a new manager who will manage it
                         System.out.println("Inserisci il nome del cinema:");
                         in.nextLine();
                         String nomeCinema=in.nextLine();
@@ -45,6 +67,9 @@ public class Start {
 
                         break;
                     case 2:
+
+                        //managing a cinema already present we will open the manager menu
+                        // after various checks on the insertion of the input data
                         if (cinemaList.getCinemaList().size() > 0) {
                             System.out.println("----------------------\n" +
                                     "LISTA DEI CINEMA:");
@@ -63,14 +88,14 @@ public class Start {
                                     isPresent = true;
                                 }
                             }
-                            if(isPresent) {
+                            if(isPresent) { //check if the text in input corresponds to a cinema in the list
                                 menager = cinemaScelto.getMenager();
                                 menager.mostraMenu();
                             }
                             else{
                                 System.out.println("Cinema non presente");
                             }
-                        } else {
+                        } else { // the cinema list is empty
                             System.out.println("Nessun Cinema Presente!!!!");
                         }
 
@@ -81,7 +106,7 @@ public class Start {
 
                         System.out.println("Scelta non valida");
                 }
-            } catch (InputMismatchException ime) {
+            } catch (InputMismatchException ime) { //exception if the text entered for the menu is not integer
                 System.out.println("Richiesti solo interi");
                 in.nextLine();
 

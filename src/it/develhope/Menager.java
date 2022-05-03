@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Menager extends User{
 
-    private Cinema cinema;
+    private Cinema cinema;  //cinema managed
     private Scanner input = new Scanner(System.in);
 
 
@@ -18,12 +18,21 @@ public class Menager extends User{
         this.cinema=cinema;
     }
 
+    /**
+     * shows the seats available in the managed cinema
+     */
+
     public void mostraPosti() {
         System.out.println("Posti disponibili: " + (this.cinema.MAX_PLACES - this.cinema.getPrenotazione().size()));
     }
+
+    /**
+     * reserve a seat in the managed cinema by asking for customer data
+     * and update the list of cinema reservations
+     */
     public void prenotaPosto() {
         List<Prenotazione> prenotazione = this.cinema.getPrenotazione();
-        if (this.cinema.MAX_PLACES - prenotazione.size() > 0) {
+        if (this.cinema.MAX_PLACES - prenotazione.size() > 0) {  //check of available places
             String name, surname, mail;
             System.out.printf("nome: ");
             input.nextLine();
@@ -42,6 +51,12 @@ public class Menager extends User{
         this.cinema.setPrenotazione(prenotazione);
 
     }
+
+
+    /**
+     * deletes a single reservation (if any) of a user whose data is requested as input
+     * and update the list of cinema reservations
+     */
     public void cancellaPrenotazione() {
         List<Prenotazione> prenotazione = this.cinema.getPrenotazione();
         System.out.printf("Inserisci nome:");
@@ -64,6 +79,10 @@ public class Menager extends User{
         }
         this.cinema.setPrenotazione(prenotazione);
      }
+
+    /**
+     * print all cinema bookings
+     */
     public void stampa(){
         List<Prenotazione> prenotazione = this.cinema.getPrenotazione();
         if(prenotazione.size()>0)
@@ -71,6 +90,12 @@ public class Menager extends User{
                 pren.stampa();
         else System.out.println("Nessuna prenotazione");
     }
+
+    /**
+     * MENAGER MENU
+     *
+     *
+     */
 
     public void mostraMenu() {
         int choice = 0;
@@ -104,7 +129,8 @@ public class Menager extends User{
                     default:
                         System.out.println("Scelta non valida");
                 }
-            } catch (InputMismatchException ime) {
+            } catch (InputMismatchException ime) {//exception if the text entered for the menu is not integer
+
                 System.out.println("Richiesti solo interi");
                 input.nextLine();
             }

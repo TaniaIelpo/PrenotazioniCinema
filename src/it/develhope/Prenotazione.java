@@ -1,11 +1,15 @@
 package it.develhope;
-
-
 import java.util.Objects;
 
+/**
+ * represent a booking object
+ *
+ * @author Tania Ielpo
+ */
+
 public class Prenotazione {
-    private Cinema cinema;
-    private User user;
+    private Cinema cinema;  //cinema booked
+    private User user; //the one who booked
 
 
     public Prenotazione(User user, Cinema cinema){

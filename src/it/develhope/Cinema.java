@@ -2,15 +2,20 @@ package it.develhope;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
+/**
+ * This class represents a Cinema
+ *
+ * @author Tania
+ */
 
 public class Cinema {
 
-    private Menager menager;
+    private Menager menager;  //who manages the cinema
 
-    private String id;
+    private String id;  //cinema name
     final int MAX_PLACES = 10;
-    private List<Prenotazione> prenotazione = new ArrayList<>();
+    private List<Prenotazione> prenotazione = new ArrayList<>(); //cinema bookings
 
     public Cinema(String id) {
         this.id = id;
@@ -32,9 +37,19 @@ public class Cinema {
         this.id = id;
     }
 
+    /**
+     * returns cinema bookings list
+     * @return prenotazione a list of bookings
+     */
+
     public List<Prenotazione> getPrenotazione() {
         return prenotazione;
     }
+
+    /**
+     * assign a list of cinema bookings
+     * @param prenotazione list of bookings
+     */
 
     public void setPrenotazione(List<Prenotazione> prenotazione) {
         this.prenotazione = prenotazione;
